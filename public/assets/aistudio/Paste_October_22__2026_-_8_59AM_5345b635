@@ -1,0 +1,1041 @@
+# PROJETO: PC LAB 3D — SIMULADOR EDUCACIONAL DE MONTAGEM E ARQUITETURA DE COMPUTADORES
+
+## 1. SEU PAPEL
+
+Você é um engenheiro de software sênior, especialista em desenvolvimento de aplicações 3D para navegadores, Three.js, WebGL, React, TypeScript, simulações interativas, arquitetura de computadores, hardware e experiência educacional.
+
+Sua missão é projetar e desenvolver uma aplicação web completa, funcional, moderna e interativa que simule a montagem, desmontagem, identificação, compatibilidade e funcionamento de computadores em um ambiente tridimensional.
+
+Não quero apenas um site institucional, uma página com modelos 3D estáticos ou uma interface que simule funcionalidades sem implementá-las.
+
+Quero um laboratório virtual de hardware no qual os estudantes possam manipular componentes, encaixar peças, observar mecanismos internos, entender a função de cada componente e aprender, na prática, como um computador é montado e funciona.
+
+O projeto será utilizado por um professor para ensinar alunos de ITIC (Introdução à Tecnologia da Informação e Comunicação), incluindo estudantes iniciantes que nunca montaram um computador.
+
+**Prioridades, nesta ordem:**
+1. Funcionalidade real das interações.
+2. Precisão técnica e didática.
+3. Regras reais de compatibilidade de hardware.
+4. Qualidade visual dos modelos e das animações 3D.
+5. Facilidade de utilização por iniciantes.
+6. Desempenho em computadores modestos.
+7. Código organizado, extensível e sustentável.
+
+Toda a interface deve estar em português brasileiro, incluindo instruções, explicações, mensagens de erro, nomes dos modos e conteúdos educacionais.
+
+---
+
+## 2. CONCEITO E EXPERIÊNCIA PRINCIPAL
+
+Crie um laboratório virtual 3D de montagem de computadores.
+
+Ao abrir a aplicação, o usuário deverá encontrar uma bancada de montagem vista em perspectiva, com iluminação realista, sombras suaves, componentes organizados e uma área de trabalho tridimensional.
+
+O usuário poderá:
+
+- Girar a câmera em torno da bancada.
+- Aproximar e afastar a visualização.
+- Observar os componentes de vários ângulos.
+- Selecionar, arrastar, soltar, girar e encaixar peças.
+- Aproximar a câmera de componentes específicos.
+- Abrir e fechar gabinetes.
+- Visualizar partes internas normalmente escondidas.
+- Consultar especificações técnicas.
+- Assistir a animações explicativas.
+- Montar um computador completo.
+- Ligar o computador virtual e observar a sequência de inicialização.
+- Identificar erros de compatibilidade.
+- Desmontar o computador seguindo procedimentos adequados.
+- Receber orientações pedagógicas durante cada etapa.
+
+A experiência deve lembrar um laboratório técnico profissional combinado com um jogo de simulação, sem perder a precisão técnica.
+
+### Direção visual
+
+Utilize uma estética de laboratório de tecnologia premium, com:
+
+- Ambiente tridimensional detalhado.
+- Bancada profissional de montagem.
+- Componentes com materiais, texturas e geometrias convincentes.
+- Placas de circuito com trilhas, conectores, capacitores, dissipadores e outros detalhes.
+- Iluminação realista e sombras.
+- Interface moderna, discreta e organizada.
+- Painéis de informações integrados à experiência 3D.
+- Animações suaves.
+- Indicadores visuais de compatibilidade.
+- Destaques discretos para conectores e pontos de encaixe.
+
+Evite uma interface genérica de dashboard administrativo, excesso de cores neon, elementos decorativos desnecessários e componentes que pareçam brinquedos.
+
+O ambiente 3D deve ser o centro da experiência. Menus e painéis devem complementar a bancada sem ocupar espaço excessivo.
+
+Não utilize imagens estáticas de componentes como substitutos de modelos tridimensionais interativos.
+
+---
+
+## 3. TECNOLOGIAS E ARQUITETURA
+
+Antes de programar, analise os requisitos, defina uma arquitetura coerente e apresente um plano curto de implementação.
+
+Dê preferência a:
+
+- React.
+- TypeScript.
+- Vite.
+- Three.js com React Three Fiber.
+- Drei para recursos auxiliares de cena, câmera, controles e carregamento.
+- Zustand ou solução equivalente para gerenciar o estado global do simulador.
+- CSS moderno ou Tailwind CSS para a interface.
+- Vitest para testes automatizados.
+- IndexedDB ou outra solução local apropriada para salvar o progresso.
+
+Você pode utilizar bibliotecas complementares quando houver uma justificativa técnica.
+
+Não adicione backend, autenticação ou banco de dados remoto sem necessidade real. A primeira versão deve funcionar localmente no navegador, com os dados do catálogo separados da lógica do simulador.
+
+Utilize módulos independentes para:
+
+- Renderização 3D.
+- Catálogo de componentes.
+- Regras de compatibilidade.
+- Sistema de encaixe.
+- Interações de arrastar e soltar.
+- Animações.
+- Simulação de inicialização.
+- Conteúdo didático.
+- Interface.
+- Salvamento e carregamento de montagens.
+- Testes.
+
+O sistema deverá permitir adicionar novos componentes sem reescrever a lógica principal.
+
+Utilize modelos procedurais em Three.js, modelos GLB/GLTF ou uma combinação dos dois. Caso utilize recursos externos, verifique sua disponibilidade, licença e possibilidade de uso no projeto.
+
+Não dependa de APIs pagas, serviços externos obrigatórios ou arquivos que não estejam realmente disponíveis.
+
+---
+
+## 4. CATÁLOGO DE COMPONENTES
+
+Implemente um catálogo de peças organizado por categoria, com filtros, busca, detalhes técnicos e modelos 3D.
+
+O catálogo inicial deve conter pelo menos os seguintes grupos:
+
+### 4.1. Placas-mãe
+
+Inclua no mínimo 10 modelos distintos de placas-mãe, distribuídos entre diferentes gerações, fabricantes, sockets e formatos.
+
+O catálogo deve abranger, quando tecnicamente aplicável:
+
+- Intel LGA 775.
+- Intel LGA 1151.
+- Intel LGA 1200.
+- Intel LGA 1700.
+- Intel LGA 1851.
+- AMD AM3+.
+- AMD AM4.
+- AMD AM5.
+- Formatos ATX.
+- Micro-ATX.
+- Mini-ITX.
+- Diferentes chipsets.
+- Slots de memória DDR3, DDR4 e DDR5.
+- Slots PCI Express.
+- Conectores SATA.
+- Slots M.2.
+- Conectores de alimentação.
+- Conectores do painel frontal.
+- Conectores de ventoinhas.
+
+Os modelos deverão representar placas-mãe concretas ou configurações didáticas tecnicamente coerentes.
+
+Não associe arbitrariamente um chipset, socket ou tipo de memória a uma placa-mãe incompatível.
+
+Se houver modelos comerciais específicos, apresente o fabricante e o modelo corretamente. Se forem modelos didáticos genéricos, identifique-os como tais.
+
+### 4.2. Processadores
+
+Inclua pelo menos 10 processadores distintos, abrangendo Intel e AMD, gerações diferentes, sockets diferentes e arquiteturas distintas.
+
+O catálogo deve conter exemplos de famílias como:
+
+- Intel Core de gerações antigas e recentes.
+- Intel Core i3, i5, i7 e i9.
+- AMD Ryzen 3, Ryzen 5, Ryzen 7 e Ryzen 9.
+- Processadores AMD de plataformas anteriores, quando apropriado.
+
+Cada processador deve ter informações como:
+
+- Fabricante.
+- Modelo.
+- Socket.
+- Arquitetura.
+- Quantidade de núcleos.
+- Quantidade de threads.
+- Frequência base.
+- Frequência máxima anunciada.
+- Cache.
+- TDP ou especificação térmica equivalente.
+- Memórias suportadas.
+- Presença ou ausência de gráficos integrados.
+- Compatibilidade com chipsets e placas-mãe.
+- Requisitos de BIOS, quando relevantes.
+
+Use informações tecnicamente fundamentadas. Quando uma especificação variar conforme a versão, identifique essa condição em vez de inventar um valor.
+
+### 4.3. Memórias RAM
+
+Implemente as gerações:
+
+- DDR.
+- DDR2.
+- DDR3.
+- DDR4.
+- DDR5.
+
+Permita observar diferenças físicas, técnicas e funcionais.
+
+Cada módulo deverá apresentar:
+
+- Geração DDR.
+- Capacidade.
+- Frequência ou taxa de transferência.
+- Formato DIMM ou SO-DIMM.
+- Tensão nominal, quando aplicável.
+- Latência, quando disponível.
+- Número de contatos conforme o formato.
+- Entalhe físico correspondente à geração.
+- Características básicas de funcionamento.
+
+O usuário deverá conseguir instalar módulos nos slots corretos, observando o encaixe e a orientação.
+
+As memórias deverão ter geometrias visualmente diferenciadas. Não represente todas as gerações com um único modelo idêntico.
+
+### 4.4. Armazenamento
+
+Inclua:
+
+- HDD de 3,5 polegadas.
+- HDD de 2,5 polegadas.
+- SSD SATA de 2,5 polegadas.
+- SSD M.2 SATA.
+- SSD M.2 NVMe.
+- Dispositivos de armazenamento de diferentes capacidades.
+
+Explique as diferenças entre SATA, PCIe, NVMe e os formatos físicos.
+
+Não trate M.2 como sinônimo de NVMe: um dispositivo M.2 pode utilizar SATA ou PCIe, conforme o modelo.
+
+### 4.5. Outros componentes obrigatórios
+
+Inclua:
+
+- Gabinetes ATX, Micro-ATX e Mini-ITX.
+- Fontes de alimentação.
+- Coolers a ar.
+- Sistemas de refrigeração líquida, em um nível didático apropriado.
+- Ventoinhas.
+- Placas de vídeo dedicadas.
+- Placas de expansão PCI Express.
+- Cabos SATA.
+- Cabos de alimentação da placa-mãe.
+- Conectores de alimentação da CPU.
+- Cabos de alimentação PCIe ou 12V-2x6, conforme os equipamentos.
+- Cabos e conectores do painel frontal.
+- Pasta térmica como recurso didático.
+- Bateria CMOS.
+- Alto-falante interno ou recurso de diagnóstico equivalente.
+
+Inclua também componentes complementares que ajudem a ensinar montagem e manutenção.
+
+---
+
+## 5. MODELOS 3D E INTERAÇÃO FÍSICA
+
+Cada componente deverá existir como um objeto identificável na cena 3D.
+
+O sistema de interação deverá permitir:
+
+- Selecionar uma peça com o mouse.
+- Arrastar a peça até a bancada.
+- Mover a peça em um plano adequado.
+- Girar a peça quando necessário.
+- Aproximar a peça da região de instalação.
+- Detectar a posição correta de encaixe.
+- Exibir um indicador de encaixe possível.
+- Realizar o encaixe quando as condições forem atendidas.
+- Rejeitar o encaixe incorreto.
+- Exibir mensagens explicando por que a instalação não é possível.
+- Destacar o componente selecionado.
+- Mostrar os conectores envolvidos na instalação.
+- Remover uma peça já instalada quando o procedimento permitir.
+- Animar a instalação e a remoção.
+
+Implemente um sistema de pontos de encaixe, também conhecidos como snap points.
+
+Cada ponto deverá possuir informações como:
+
+- Tipo de componente aceito.
+- Posição tridimensional.
+- Orientação.
+- Regras de compatibilidade.
+- Dependências de instalação.
+- Estado de ocupação.
+- Condições necessárias para aceitar a peça.
+
+Ao arrastar um módulo de RAM até um slot compatível, por exemplo, o componente deverá se alinhar à posição correta e apresentar uma animação de instalação.
+
+Ao tentar colocá-lo em um slot incompatível, o sistema deverá rejeitar a operação e explicar o motivo.
+
+**Importante:** não basta detectar o clique ou posicionar uma peça arbitrariamente. O sistema precisa diferenciar uma peça selecionada, uma peça em movimento, uma peça próxima do encaixe, uma peça compatível, uma peça instalada e uma instalação recusada.
+
+Não exija precisão milimétrica do usuário. O sistema deve ajudar o estudante com aproximação automática, realce do slot e indicação visual da orientação correta.
+
+### Estados de interação
+
+Implemente estados bem definidos, como:
+
+- Disponível no catálogo.
+- Selecionado.
+- Sendo arrastado.
+- Próximo de um encaixe.
+- Encaixe válido.
+- Encaixe inválido.
+- Instalado.
+- Removido.
+- Com instalação bloqueada por dependência.
+
+Esses estados devem controlar a apresentação visual, as mensagens e as permissões de interação.
+
+---
+
+## 6. SISTEMA REAL DE COMPATIBILIDADE
+
+Este é um dos requisitos mais importantes de todo o projeto.
+
+Implemente um mecanismo centralizado de compatibilidade. Não espalhe regras de compatibilidade diretamente nos componentes visuais.
+
+Cada componente deverá possuir dados estruturados e verificáveis.
+
+### 6.1. Compatibilidade entre CPU e placa-mãe
+
+Verifique:
+
+- Socket.
+- Plataforma.
+- Geração e família do processador.
+- Suporte do chipset.
+- Compatibilidade de BIOS.
+- Revisão da placa, quando relevante.
+- Outras restrições técnicas específicas.
+
+Exemplo: um processador Intel LGA 1700 não poderá ser instalado em uma placa-mãe AMD AM4.
+
+Mesmo que dois processadores sejam do mesmo fabricante, isso não significa que sejam compatíveis com a mesma placa-mãe.
+
+A compatibilidade deve ser determinada pelos dados reais do modelo, e não apenas pela marca.
+
+### 6.2. Compatibilidade entre RAM e placa-mãe
+
+Verifique:
+
+- Geração DDR.
+- Tipo físico do módulo.
+- Tipo de slot.
+- Capacidade suportada.
+- Limites de frequência, quando disponíveis.
+- Capacidade máxima por slot.
+- Capacidade máxima total.
+- Quantidade de slots.
+- Restrições da plataforma.
+
+Uma memória DDR3 não poderá ser instalada em um slot DDR4 ou DDR5.
+
+Uma memória DDR4 não deverá ser aceita em um slot DDR5.
+
+Mostre visualmente o motivo do bloqueio e permita ao estudante compreender a diferença física entre os módulos.
+
+### 6.3. Compatibilidade do armazenamento
+
+Verifique:
+
+- Interface.
+- Protocolo.
+- Formato físico.
+- Chaveamento M.2.
+- Suporte do slot.
+- Disponibilidade de conectores.
+- Possíveis compartilhamentos de recursos entre slots.
+- Restrições descritas pelo fabricante.
+
+Não permita instalar um dispositivo em um conector incompatível apenas porque ambos parecem semelhantes.
+
+### 6.4. Compatibilidade do gabinete
+
+Verifique:
+
+- Formato da placa-mãe.
+- Espaço disponível.
+- Dimensões da placa de vídeo.
+- Altura máxima do cooler.
+- Comprimento da fonte.
+- Espaço para radiadores e ventoinhas.
+- Posições de montagem.
+
+### 6.5. Compatibilidade da fonte
+
+Verifique:
+
+- Potência adequada à configuração.
+- Conectores necessários.
+- Alimentação da placa-mãe.
+- Alimentação da CPU.
+- Alimentação da GPU.
+- Conectores de armazenamento.
+- Requisitos específicos dos componentes.
+
+Quando não houver informações suficientes para confirmar a compatibilidade elétrica, apresente o resultado como desconhecido ou pendente de verificação.
+
+Não declare uma configuração segura com base apenas em uma estimativa simplificada de potência.
+
+### 6.6. Sistema de diagnóstico
+
+Classifique os resultados como:
+
+- Compatível.
+- Incompatível.
+- Compatível com ressalvas.
+- Requer atualização ou verificação de BIOS.
+- Informações insuficientes.
+- Dependência ainda não instalada.
+
+Cada resultado deve explicar a causa.
+
+Exemplo de mensagem:
+
+"Instalação recusada: este processador utiliza o socket LGA 1700, mas a placa-mãe selecionada possui socket AM4. Escolha um processador AM4 compatível ou uma placa-mãe apropriada."
+
+Não permita que o usuário contorne as regras apenas porque uma peça foi arrastada até a posição correta.
+
+Crie testes automatizados para verificar as regras de compatibilidade mais importantes.
+
+---
+
+## 7. ANIMAÇÕES DIDÁTICAS DO FUNCIONAMENTO
+
+Quando o estudante clicar em uma peça, não quero apenas uma descrição textual.
+
+Cada componente deverá possuir uma experiência didática com três partes:
+
+1. O que é e qual é sua função.
+2. Como funciona internamente.
+3. Uma animação visual explicativa.
+
+O estudante deverá poder iniciar, pausar, reiniciar e, quando apropriado, controlar a velocidade da animação.
+
+### 7.1. Processador
+
+Mostre:
+
+- A localização da CPU na placa-mãe.
+- A comunicação conceitual com a memória.
+- O processamento de instruções.
+- A relação com o sistema operacional e os programas.
+- A geração e dissipação de calor.
+
+Use diagramas animados ou uma representação visual simplificada do fluxo de dados.
+
+Não apresente a animação como uma reprodução literal de todos os circuitos internos de um processador real.
+
+### 7.2. Memória RAM
+
+Mostre:
+
+- A instalação do módulo.
+- A comunicação entre CPU e memória.
+- Dados sendo armazenados temporariamente.
+- Leitura e escrita.
+- A diferença entre memória volátil e armazenamento permanente.
+
+A animação deve demonstrar que os dados mantidos na RAM dependem de alimentação elétrica.
+
+### 7.3. HDD — demonstração obrigatória
+
+Esta deve ser uma das animações mais completas do simulador.
+
+Ao selecionar um HDD, permita alternar entre a aparência externa e uma visualização interna didática.
+
+Mostre:
+
+- Pratos magnéticos.
+- Eixo e motor de rotação.
+- Cabeças de leitura e escrita.
+- Braço atuador.
+- Movimento de busca sobre os pratos.
+- Operação conceitual de leitura e gravação.
+- Transferência de dados pelo controlador.
+- Diferença entre acesso mecânico e acesso eletrônico.
+
+Durante a animação, mostre os pratos girando, o braço se movimentando e a cabeça sendo posicionada sobre uma região do disco.
+
+Utilize uma representação simplificada da organização dos dados em trilhas e setores.
+
+Adicione legendas e explicações sincronizadas com os movimentos.
+
+O usuário deve poder alternar entre o HDD fechado, uma visualização em corte e uma demonstração interna ampliada.
+
+Deixe claro que se trata de uma representação didática, sem pretender reproduzir todos os detalhes de um dispositivo real.
+
+### 7.4. SSD
+
+Demonstre:
+
+- Memória flash.
+- Controlador.
+- Armazenamento sem partes mecânicas móveis.
+- Operações de leitura e gravação.
+- Transferência de dados.
+- Diferenças conceituais entre SSD e HDD.
+
+### 7.5. Placa-mãe
+
+Permita destacar individualmente:
+
+- Socket da CPU.
+- Slots de RAM.
+- Chipset, quando presente.
+- Slots PCI Express.
+- Conectores SATA.
+- Slots M.2.
+- Conectores de alimentação.
+- Portas traseiras.
+- Circuitos de alimentação.
+- Conectores do painel frontal.
+
+Ao clicar em uma região, mostre a função, a importância e os componentes relacionados.
+
+### 7.6. Fonte de alimentação
+
+Explique a conversão da energia elétrica para as tensões contínuas utilizadas pelo computador.
+
+Demonstre o papel dos conectores, a distribuição de energia e a necessidade de uma fonte adequada.
+
+Não incentive a abertura de uma fonte real. O conteúdo deverá deixar claro que existem riscos elétricos e que a animação interna é exclusivamente didática.
+
+### 7.7. Sistema de refrigeração
+
+Mostre o caminho do calor entre o processador, o sistema de refrigeração e o ambiente.
+
+Demonstre a circulação de ar no gabinete, a função das ventoinhas e a importância da instalação adequada do cooler.
+
+### 7.8. Placa de vídeo
+
+Mostre a GPU, a memória de vídeo, o sistema de refrigeração e o fluxo conceitual de dados gráficos.
+
+### 7.9. Outros componentes
+
+Crie experiências equivalentes para os demais componentes do catálogo, priorizando explicações visuais relevantes para a aprendizagem.
+
+As animações devem ser funcionais e específicas de cada peça. Não reutilize uma animação genérica de partículas para representar todos os componentes.
+
+---
+
+## 8. MODO DE MONTAGEM GUIADA
+
+Crie um modo didático que ensine o estudante a montar um computador passo a passo.
+
+O sistema deverá apresentar uma tarefa por vez, com instruções claras e uma indicação visual da região que deve ser utilizada.
+
+Exemplo de sequência:
+
+1. Conhecer as ferramentas e as precauções de segurança.
+2. Identificar a placa-mãe.
+3. Identificar o socket e o processador.
+4. Instalar a CPU com a orientação correta.
+5. Aplicar a pasta térmica de forma didática.
+6. Instalar o cooler.
+7. Instalar os módulos de RAM.
+8. Preparar o gabinete.
+9. Instalar os espaçadores necessários.
+10. Fixar a placa-mãe.
+11. Instalar a fonte de alimentação.
+12. Instalar o armazenamento.
+13. Instalar a placa de vídeo.
+14. Conectar a alimentação da placa-mãe.
+15. Conectar a alimentação da CPU.
+16. Conectar os cabos de armazenamento, quando necessários.
+17. Conectar os cabos do painel frontal.
+18. Revisar a montagem.
+19. Executar o diagnóstico.
+20. Ligar o computador virtual.
+
+A sequência deve respeitar dependências reais.
+
+O sistema deverá permitir voltar às etapas anteriores, consultar explicações e revisar procedimentos.
+
+Não obrigue o estudante a seguir a sequência completa em todas as situações. Algumas tarefas devem poder ser exploradas livremente, desde que as dependências técnicas sejam respeitadas.
+
+### Avaliação
+
+Ao concluir cada etapa:
+
+- Verifique se a peça correta foi escolhida.
+- Verifique se o encaixe está correto.
+- Explique os erros.
+- Ofereça dicas graduais.
+- Atualize o progresso.
+- Registre as etapas concluídas.
+- Permita repetir uma tarefa.
+
+Implemente um sistema de pontuação pedagógica baseado em precisão, compreensão e conclusão das etapas, sem recompensar práticas tecnicamente incorretas.
+
+---
+
+## 9. MODO LIVRE DE MONTAGEM
+
+Crie também um modo livre no qual o aluno tenha liberdade para explorar o laboratório.
+
+Nesse modo, o usuário deverá conseguir:
+
+- Escolher os componentes de seu interesse.
+- Montar diferentes configurações.
+- Testar combinações compatíveis.
+- Provocar incompatibilidades intencionalmente para aprender.
+- Consultar o motivo de uma instalação recusada.
+- Remover componentes e experimentar alternativas.
+- Salvar configurações.
+- Comparar configurações.
+- Reiniciar a bancada.
+- Consultar a lista de peças instaladas.
+
+As incompatibilidades devem ser educativas, e não simplesmente bloqueios sem explicação.
+
+Inclua uma opção para mostrar dicas ou ocultá-las, de modo que o professor possa avaliar o conhecimento do aluno.
+
+---
+
+## 10. MODO DE DIAGNÓSTICO E SOLUÇÃO DE PROBLEMAS
+
+Implemente um modo que apresente situações de manutenção e diagnóstico.
+
+Exemplos:
+
+- O computador não liga.
+- O processador não é compatível.
+- A memória está instalada incorretamente.
+- Há um módulo de RAM defeituoso em um cenário simulado.
+- O cabo de alimentação da CPU está desconectado.
+- O armazenamento não foi conectado.
+- A configuração não possui uma solução de vídeo disponível.
+- A fonte não possui os conectores necessários.
+- O cooler não está instalado adequadamente.
+- A placa de vídeo não está recebendo alimentação.
+- A BIOS não reconhece determinado processador.
+- A sequência de inicialização falha por uma configuração incompatível.
+
+O simulador deve permitir que o estudante inspecione a configuração, consulte pistas e identifique a causa do problema.
+
+Cada cenário deve ter:
+
+- Descrição do sintoma.
+- Configuração inicial.
+- Falha simulada.
+- Pistas opcionais.
+- Procedimento de diagnóstico.
+- Solução esperada.
+- Explicação da causa.
+- Resultado da intervenção.
+
+Os cenários devem ser reproduzíveis e ter resultados consistentes.
+
+Não utilize aleatoriedade que torne impossível reproduzir ou avaliar um problema.
+
+---
+
+## 11. LIGAR O COMPUTADOR VIRTUAL
+
+Após a montagem, o estudante deverá poder acionar o botão de ligar do gabinete.
+
+Crie uma sequência de inicialização visual e didática.
+
+A sequência poderá incluir:
+
+1. Verificação conceitual da alimentação.
+2. Inicialização da placa-mãe.
+3. Verificação básica de CPU e memória.
+4. Diagnóstico POST simulado.
+5. Identificação de problemas.
+6. Acesso ao firmware representado de forma didática.
+7. Identificação de dispositivos de armazenamento.
+8. Tentativa de inicialização do sistema operacional.
+
+Apresente códigos, mensagens ou sinais de erro quando houver problemas na montagem.
+
+Quando a configuração estiver correta, mostre uma tela de inicialização bem elaborada.
+
+Quando houver uma falha, indique o sintoma e ofereça meios para investigar sua causa.
+
+**Não afirme que o navegador está executando um POST real, firmware real ou sistema operacional real.** Trata-se de uma simulação educacional de seus conceitos e etapas.
+
+Inclua cenários com falhas de inicialização e permita que o estudante corrija os problemas.
+
+---
+
+## 12. PAINEL DE INFORMAÇÕES DOS COMPONENTES
+
+Ao clicar em qualquer componente, abra um painel contextual sem abandonar a cena 3D.
+
+O painel deverá conter:
+
+- Nome do componente.
+- Categoria.
+- Fabricante e modelo, quando aplicável.
+- Imagem ou visualização 3D.
+- Descrição resumida.
+- Função no computador.
+- Especificações técnicas.
+- Compatibilidades.
+- Incompatibilidades conhecidas.
+- Conectores.
+- Requisitos de instalação.
+- Relação com outros componentes.
+- Cuidados importantes.
+- Animação didática.
+- Curiosidades técnicas.
+- Perguntas de revisão.
+
+Inclua abas como:
+
+- Visão geral.
+- Especificações.
+- Como funciona.
+- Instalação.
+- Compatibilidade.
+- Teste seus conhecimentos.
+
+O estudante deverá conseguir retornar à bancada sem perder a configuração atual.
+
+---
+
+## 13. CONTEÚDO EDUCACIONAL
+
+Crie uma base de conteúdo didático em português brasileiro.
+
+Explique conceitos como:
+
+- Arquitetura básica de um computador.
+- CPU, RAM e armazenamento.
+- Placa-mãe e chipset.
+- Barramentos.
+- PCI Express.
+- SATA e NVMe.
+- Slots e sockets.
+- Gerações DDR.
+- BIOS e UEFI.
+- POST.
+- Boot.
+- Fonte de alimentação.
+- Refrigeração.
+- Compatibilidade.
+- Montagem e desmontagem.
+- Eletricidade estática.
+- Segurança no manuseio de componentes.
+- Diagnóstico de falhas.
+
+O conteúdo deverá ser acessível a iniciantes, mas possuir detalhes técnicos suficientes para aulas de informática.
+
+Não invente especificações técnicas. Quando um dado depender do modelo, informe a variação.
+
+Inclua glossário, perguntas de revisão e pequenos desafios relacionados às peças que o aluno estiver manipulando.
+
+---
+
+## 14. ÁREA DO PROFESSOR
+
+Crie uma área voltada ao professor, sem exigir inicialmente um sistema complexo de contas ou serviços remotos.
+
+Ela deverá permitir:
+
+- Consultar o progresso de uma sessão.
+- Selecionar atividades guiadas.
+- Escolher o nível de dificuldade.
+- Ativar ou desativar dicas.
+- Selecionar cenários de diagnóstico.
+- Criar desafios com uma configuração inicial.
+- Escolher os componentes permitidos.
+- Definir objetivos para uma atividade.
+- Visualizar os erros de compatibilidade cometidos.
+- Consultar a pontuação e as etapas concluídas.
+- Reiniciar uma atividade.
+
+Inclua um modo de demonstração para projetar o simulador em uma aula, com interface legível e controles simples.
+
+Se for necessário identificar diferentes alunos ou armazenar resultados entre dispositivos, estruture a aplicação para permitir a inclusão futura de autenticação e backend. Não finja que dados locais representam uma plataforma escolar com contas compartilhadas.
+
+---
+
+## 15. INTERFACE E USABILIDADE
+
+A interface deve ser clara mesmo para quem nunca utilizou um simulador 3D.
+
+Organize a tela principal em três regiões:
+
+**Região central:** bancada 3D interativa.
+
+**Painel lateral:** catálogo de componentes, pesquisa, filtros e informações da peça selecionada.
+
+**Barra contextual:** ferramentas de câmera, modo de interação, ajuda, diagnóstico, montagem guiada e controle da simulação.
+
+Adapte a disposição dos painéis ao tamanho da tela.
+
+Implemente:
+
+- Tooltips.
+- Atalhos de teclado.
+- Instruções para o primeiro acesso.
+- Indicações visuais de ações possíveis.
+- Mensagens de erro claras.
+- Indicadores de carregamento.
+- Estados vazios informativos.
+- Botão de reinicialização com confirmação.
+- Salvamento local da montagem.
+- Opção de desfazer e refazer ações, quando tecnicamente viável.
+
+A navegação deverá funcionar em computadores e tablets. Em dispositivos com controles por toque, ofereça alternativas adequadas ao arrastar com o mouse.
+
+Não deixe o simulador depender exclusivamente de cores para indicar compatibilidade: utilize também ícones, textos e símbolos.
+
+---
+
+## 16. DESEMPENHO E ACESSIBILIDADE
+
+O projeto deverá funcionar em navegadores modernos, especialmente em computadores de laboratório escolar que podem ter hardware limitado.
+
+Implemente:
+
+- Carregamento sob demanda dos modelos mais pesados.
+- Controle de resolução de renderização.
+- Gerenciamento adequado de geometrias e materiais.
+- Liberação de recursos quando os modelos forem removidos.
+- Limitação de efeitos gráficos caros.
+- Alternativa gráfica simplificada.
+- Indicador de carregamento da cena.
+- Mensagens úteis quando WebGL não estiver disponível.
+- Tratamento de erros de carregamento.
+- Navegação por teclado nas áreas da interface.
+- Textos legíveis e contraste adequado.
+- Respeito às preferências de redução de movimento quando aplicável.
+
+Evite sombras e efeitos que prejudiquem significativamente o desempenho em computadores modestos.
+
+O simulador não deve travar quando o usuário abrir um painel, trocar de componente ou alternar entre as animações.
+
+---
+
+## 17. ORGANIZAÇÃO DOS DADOS
+
+Mantenha os dados dos componentes separados do código de apresentação.
+
+Cada peça deverá possuir um identificador único e dados estruturados.
+
+Crie entidades para:
+
+- Placa-mãe.
+- Processador.
+- Memória.
+- Armazenamento.
+- Fonte.
+- Gabinete.
+- Refrigeração.
+- Placa de vídeo.
+- Cabos.
+- Slots e conectores.
+- Regras de compatibilidade.
+- Pontos de encaixe.
+- Animações.
+- Conteúdo didático.
+
+Uma placa-mãe, por exemplo, deve informar quais CPUs pode aceitar, quais gerações de RAM suporta, quantos slots possui, quais interfaces de armazenamento oferece e quais limitações específicas devem ser verificadas.
+
+As relações entre componentes deverão ser consultadas por um mecanismo centralizado.
+
+Não utilize comparações frágeis baseadas apenas em nomes de produtos, textos livres ou verificações improvisadas de strings.
+
+Quando uma informação técnica não estiver cadastrada, o sistema deverá reconhecer a ausência dessa informação em vez de inventar compatibilidade.
+
+---
+
+## 18. TESTES E VALIDAÇÃO
+
+Crie testes automatizados para as regras essenciais.
+
+Inclua casos como:
+
+- CPU compatível com a placa-mãe correta.
+- CPU incompatível com outro socket.
+- RAM DDR3 rejeitada por um slot DDR4.
+- RAM DDR4 rejeitada por um slot DDR5.
+- SSD incompatível com uma interface não suportada.
+- Placa-mãe incompatível com o gabinete escolhido.
+- Fonte sem conectores necessários.
+- Slot ocupado que não aceita outra peça.
+- Tentativa de remover uma peça que possui dependências.
+- Falha de inicialização por ausência de um componente obrigatório.
+- Configuração sem dados suficientes para confirmar compatibilidade.
+
+Além dos testes unitários, valide os fluxos principais de interação.
+
+Verifique se o usuário consegue:
+
+1. Abrir o catálogo.
+2. Selecionar uma peça.
+3. Arrastá-la até a bancada.
+4. Receber uma indicação de encaixe.
+5. Instalar uma peça compatível.
+6. Ter uma peça incompatível recusada.
+7. Consultar suas especificações.
+8. Executar uma animação.
+9. Montar uma configuração.
+10. Executar o diagnóstico.
+11. Iniciar a simulação de inicialização.
+12. Salvar e restaurar a montagem.
+
+Não declare os testes aprovados sem executá-los.
+
+---
+
+## 19. REGRAS INEGOCIÁVEIS DE IMPLEMENTAÇÃO
+
+- Não entregue apenas um protótipo visual.
+- Não crie botões decorativos sem comportamento.
+- Não substitua a interação 3D por imagens estáticas.
+- Não simule a compatibilidade com regras genéricas que ignoram os modelos.
+- Não permita encaixes inválidos apenas para facilitar a demonstração.
+- Não apresente animações genéricas como se fossem específicas de cada componente.
+- Não invente modelos, conectores ou especificações técnicas.
+- Não deixe funcionalidades importantes representadas apenas por comentários ou TODOs.
+- Não esconda limitações técnicas.
+- Não utilize dados fictícios como se fossem dados reais de fabricantes.
+- Não afirme que um recurso está implementado se ele ainda não funciona.
+- Não gere arquivos vazios ou módulos que não sejam utilizados.
+- Não remova funcionalidades já implementadas ao acrescentar outras.
+- Não reescreva desnecessariamente partes funcionais do projeto.
+- Não dependa de serviços pagos para as funcionalidades essenciais.
+- Não comprometa a precisão didática para produzir efeitos visuais.
+
+Quando uma funcionalidade não puder ser implementada integralmente na etapa atual, informe claramente sua limitação e apresente a melhor implementação funcional possível dentro do escopo.
+
+---
+
+## 20. PLANO DE DESENVOLVIMENTO
+
+Este projeto é grande. Trabalhe em etapas para preservar a qualidade e a coerência técnica.
+
+### Etapa 1 — Fundação
+
+- Criar o projeto e a estrutura de pastas.
+- Implementar a interface básica.
+- Criar a bancada 3D.
+- Implementar câmera, iluminação e controles.
+- Criar componentes 3D iniciais.
+- Implementar seleção e arrastar e soltar.
+- Criar os primeiros pontos de encaixe.
+
+### Etapa 2 — Catálogo e compatibilidade
+
+- Implementar o catálogo estruturado.
+- Cadastrar as primeiras placas-mãe.
+- Cadastrar os processadores.
+- Cadastrar as memórias.
+- Cadastrar armazenamento e componentes complementares.
+- Implementar o motor de compatibilidade.
+- Criar testes para as regras técnicas.
+
+### Etapa 3 — Montagem funcional
+
+- Implementar encaixe automático.
+- Implementar instalação e remoção.
+- Implementar dependências.
+- Criar os indicadores de compatibilidade.
+- Implementar gabinete e montagem interna.
+- Implementar o diagnóstico da configuração.
+
+### Etapa 4 — Experiências didáticas
+
+- Implementar os painéis de informações.
+- Criar animações da CPU, RAM, HDD, SSD e placa-mãe.
+- Criar animações dos demais componentes.
+- Implementar o modo de montagem guiada.
+- Implementar os exercícios e as avaliações.
+
+### Etapa 5 — Inicialização e diagnóstico
+
+- Implementar o botão de ligar.
+- Simular a sequência POST.
+- Implementar erros de inicialização.
+- Criar cenários de diagnóstico.
+- Criar feedback pedagógico.
+
+### Etapa 6 — Área do professor e acabamento
+
+- Implementar desafios.
+- Implementar acompanhamento do progresso.
+- Implementar salvamento local.
+- Otimizar o desempenho.
+- Corrigir problemas de interação.
+- Testar a experiência completa.
+- Preparar o projeto para execução e implantação.
+
+Ao final de cada etapa, apresente o que foi concluído, o que foi testado e quais limitações ainda existem.
+
+Não interrompa o trabalho depois de apresentar o plano. Comece a implementar a Etapa 1 e avance pelas etapas seguintes dentro dos recursos e limites disponíveis no ambiente.
+
+Se o ambiente tiver limitações de contexto ou execução, preserve o projeto existente e priorize incrementos funcionais, sem afirmar que o projeto inteiro foi concluído antes de realmente estar pronto.
+
+---
+
+## 21. CRITÉRIOS DE ACEITAÇÃO
+
+O projeto só poderá ser considerado funcional quando, no mínimo:
+
+- A bancada 3D puder ser explorada com a câmera.
+- Os componentes puderem ser selecionados e manipulados.
+- Existirem pelo menos 10 modelos distintos de placas-mãe e 10 processadores.
+- DDR, DDR2, DDR3, DDR4 e DDR5 estiverem representadas.
+- CPU, RAM, armazenamento, fonte, gabinete e demais componentes principais possuírem dados estruturados.
+- A compatibilidade for validada por regras técnicas.
+- Encaixes compatíveis funcionarem de verdade.
+- Encaixes incompatíveis forem recusados com explicações.
+- Cada componente principal tiver informações técnicas e uma experiência didática funcional.
+- O HDD possuir uma animação interna de leitura e gravação.
+- O usuário conseguir realizar uma montagem guiada.
+- O usuário conseguir montar livremente uma configuração.
+- Existir diagnóstico de falhas.
+- Existir uma simulação de inicialização.
+- O progresso puder ser salvo localmente.
+- Os fluxos essenciais tiverem testes executados.
+- A aplicação puder ser iniciada seguindo instruções claras.
+
+Esses critérios são o mínimo, não o limite do projeto.
+
+---
+
+## 22. SUA PRIMEIRA RESPOSTA E A EXECUÇÃO
+
+Comece apresentando brevemente:
+
+1. A arquitetura escolhida.
+2. Como será implementada a interação 3D.
+3. Como serão modeladas as regras de compatibilidade.
+4. Como serão construídas as animações didáticas.
+5. Quais são as etapas de desenvolvimento.
+
+Em seguida, comece a construir o projeto de verdade.
+
+Gere os arquivos necessários, implemente os componentes, execute os testes disponíveis e corrija os erros encontrados.
+
+Se tiver acesso ao terminal e ao sistema de arquivos, utilize-os para criar e validar a aplicação. Se tiver acesso a uma prévia visual, verifique a interação real da bancada.
+
+Ao terminar cada etapa, informe como executar e testar o que foi desenvolvido.
+
+**Objetivo final:** entregar um laboratório virtual 3D de montagem e funcionamento de computadores, com peças manipuláveis, encaixes inteligentes, compatibilidade tecnicamente fundamentada, animações explicativas e ferramentas pedagógicas que possam ser utilizadas em aulas reais de ITIC.

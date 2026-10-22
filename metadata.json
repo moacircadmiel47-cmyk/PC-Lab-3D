@@ -1,0 +1,6 @@
+{
+  "name": "PC Lab 3D — Simulador Educacional de Hardware e Arquitetura",
+  "description": "Laboratório virtual 3D interativo para montagem de computadores, validação real de compatibilidade de hardware, animações internas (HDD, CPU, RAM, SSD) e diagnóstico para ensino de ITIC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
